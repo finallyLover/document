@@ -6,25 +6,50 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <!-- 绿色主题 -->
   <link href="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/themes/vue.css" rel="stylesheet">
+  <!-- 蓝色主题 -->
+  <!-- <link href="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/themes/buble.min.css" rel="stylesheet"> -->
+<!-- 天蓝色主题 -->
+  <!-- <link href="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/themes/dolphin.min.css" rel="stylesheet"> -->
+  <!-- 黑色主题 -->
+  <!-- <link href="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/themes/dark.min.css" rel="stylesheet"> -->
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.$docsify = {
+      // 名称
       name: '个人笔记',
-      repo: '',
+      //右侧跳转地址
+      repo: 'https://finallylover.github.io/document/#/',
+      //侧边栏 开启
+      loadSidebar: true,
+      //显示层级
+      subMaxLevel: 4,
+      //导航栏
+      loadNavbar:true,
+      nameLink: '/note',
+      //全文检索
       search: {
         paths: 'auto',
         placeholder: '搜索',
         noData: '找不到结果',
         depth: 3,
       },
+      pagination: {
+      previousText: '上一篇',
+      nextText: '下一篇',
+    }
     }
   </script>
   <!-- Docsify v4 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/docsify.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/plugins/search.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/plugins/zoom-image.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/plugins/front-matter.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/plugins/emoji.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/plugins/external-script.min.js"></script>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.12.2/plugins/matomo.min.js"></script> -->
 </body>
 </html>
