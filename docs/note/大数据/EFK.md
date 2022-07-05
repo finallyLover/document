@@ -1,4 +1,8 @@
-```
+# EFK (Elasticsearch + Fluentd + Kibana)日志分析系统
+
+
+
+```shell
  docker run -d -e ES_JAVA_POTS="-Xms256m -Xmx256m"  -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300  --name elasticsearch elasticsearch:7.7.1
 
 
