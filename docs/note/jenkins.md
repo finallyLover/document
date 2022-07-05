@@ -112,14 +112,14 @@ git pull origin main
 export JAVA_HOME=/opt/jdk-13/ 
 /opt/apache-maven-3.8.4/bin/mvn clean package -P ${params[2]} -Dmaven.test.skip=true install 
 cd /house/git_rep/${params[0]}/ruoyi-admin/target/
-adminpid=`sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 "sudo ps -aux|grep ruoyi-admin|grep -v grep"|awk '{print $2}'|xargs`
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 "kill -9 `echo ${adminpid}`"
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 "mv /home/jyz/app/ruoyi-admin.jar /home/jyz/app/ruoyi-admin-$(date +%Y%m%d).bak"
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' scp -P 22 ruoyi-admin.jar ubuntu@175.178.85.9:/home/jyz/app/ruoyi-admin.jar
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 " rm  /home/jyz/app/logs/sys-error.log"
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 " rm  /home/jyz/app/logs/sys-info.log"
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 " rm  /home/jyz/app/logs/sys-user.log"
-sshpass -p 'JkBrVKmMy3dcCdGb7T6b8C' ssh ubuntu@175.178.85.9 "nohup java -jar /home/jyz/app/ruoyi-admin.jar  1>/home/jyz/app/logs/ruoyi-admin.log&"
+adminpid=`sshpass -p '123456' ssh ubuntu@127.0.0.1 "sudo ps -aux|grep ruoyi-admin|grep -v grep"|awk '{print $2}'|xargs`
+sshpass -p '123456' ssh ubuntu@127.0.0.1 "kill -9 `echo ${adminpid}`"
+sshpass -p '123456' ssh ubuntu@127.0.0.1 "mv /home/zbobo/app/ruoyi-admin.jar /home/zbobo/app/ruoyi-admin-$(date +%Y%m%d).bak"
+sshpass -p '123456' scp -P 22 ruoyi-admin.jar ubuntu@127.0.0.1:/home/zbobo/app/ruoyi-admin.jar
+sshpass -p '123456' ssh ubuntu@127.0.0.1 " rm  /home/zbobo/app/logs/sys-error.log"
+sshpass -p '123456' ssh ubuntu@127.0.0.1 " rm  /home/zbobo/app/logs/sys-info.log"
+sshpass -p '123456' ssh ubuntu@127.0.0.1 " rm  /home/zbobo/app/logs/sys-user.log"
+sshpass -p '123456' ssh ubuntu@127.0.0.1 "nohup java -jar /home/zbobo/app/ruoyi-admin.jar  1>/home/zbobo/app/logs/ruoyi-admin.log&"
 #docker container prune -f
 ```
 
