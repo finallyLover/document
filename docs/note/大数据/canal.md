@@ -1,5 +1,21 @@
 # canal  增量数据订阅与消费
 
+## 介绍
+
+![image-20220706101159168](canal.assets/image-20220706101159168-16570735212971.png)
+
+
+
+canal.example是demo工程
+
+canal-admin设计上是为canal提供整体配置管理、节点运维等面向运维的功能，提供相对友好的WebUI操作界面，方便更多用户快速和安全的操作
+
+canal-adapter
+增加客户端数据落地的适配及启动功能(支持HBase等)
+
+canal-deployer
+这个就相当于canal的服务端，启动它才可以在客户端接收数据库变更信息。
+
 ## 安装部署 
 
 ### 前置准备
@@ -14,6 +30,12 @@
 create user 'canal'@'%' identified by 'Canal@123456';
 
 grant SELECT, REPLICATION SLAVE, REPLICATION CLIENT on *.* to 'canal'@'%' identified by 'Canal@123456';
+
+
+备注 如果是云服务器上 canal 是一台服务器则需要再添加localhost
+
+create user 'canal'@'localhost' identified by 'Canal@123456';
+grant SELECT, REPLICATION SLAVE, REPLICATION CLIENT on *.* to 'canal'@'localhost' identified by 'Canal@123456';
 ```
 
 #### 更改配置信息
@@ -51,6 +73,13 @@ server_id=1
 查看当前正在写入的binlog文件：
 
 ![img](https://pic3.zhimg.com/80/v2-736c38141854f2a405d6690f83de0b26_720w.jpg)
+
+### 创建用户
+
+```
+```
+
+
 
 ### 下载
 
