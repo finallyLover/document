@@ -144,9 +144,9 @@ canal.instance.enableDruid=false
 #canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==
 
 # table regex
-# table regex .*\\..*表示监听所有表 也可以写具体的表名，用，隔开
+# table regex .*\\..*表示监听所有表 也可以写具体的数据库名称.表名，用','隔开
 #canal.instance.filter.regex=.*\\..*
-canal.instance.filter.regex=.\\..
+canal.instance.filter.regex=z-blog.b_tag,z-blog.b_type
 
 # table black regex
 # mysql 数据解析表的黑名单，多个表用，隔开
@@ -157,16 +157,48 @@ canal.instance.filter.black.regex=mysql\\.slave_.*
 #canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch
 
 # mq config
+#普通模式匹配
 canal.mq.topic=example
 # dynamic topic route by schema or table regex
+# 按照正则表单时匹配路由
 #canal.mq.dynamicTopic=mytest1.user,topic2:mytest2\\..*,.*\\..*
 canal.mq.partition=0
 # hash partition config
 #canal.mq.enableDynamicQueuePartition=false
 #canal.mq.partitionsNum=3
 #canal.mq.dynamicTopicPartitionNum=test.*:4,mycanal:6
+#支持字段匹配不同的Topic
 #canal.mq.partitionHash=test.table:id^name,.*\\..*
 #################################################
+```
+==备注： (可以根据实际需求选定 数据库与canal 的匹配模式 生成不同的topic)==
+```
+canal 1.1.3版本之后, 支持配置格式：schema 或 schema.table，多个配置之间使用逗号或分号分隔
+
+例子1：test\\.test 指定匹配的单表，发送到以test_test为名字的topic上
+例子2：.*\\..* 匹配所有表，则每个表都会发送到各自表名的topic上
+例子3：test 指定匹配对应的库，一个库的所有表都会发送到库名的topic上
+例子4：test\\.* 指定匹配的表达式，针对匹配的表会发送到各自表名的topic上
+例子5：test,test1\\.test1，指定多个表达式，会将test库的表都发送到test的topic上，test1\\.test1的表发送到对应的test1_test1 topic上，其余的表发送到默认的canal.mq.topic值
+为满足更大的灵活性，允许对匹配条件的规则指定发送的topic名字，配置格式：topicName:schema 或 topicName:schema.table
+
+例子1: test:test\\.test 指定匹配的单表，发送到以test为名字的topic上
+例子2: test:.*\\..* 匹配所有表，因为有指定topic，则每个表都会发送到test的topic下
+例子3: test:test 指定匹配对应的库，一个库的所有表都会发送到test的topic下
+例子4：testA:test\\.* 指定匹配的表达式，针对匹配的表会发送到testA的topic下
+例子5：test0:test,test1:test1\\.test1，指定多个表达式，会将test库的表都发送到test0的topic下，test1\\.test1的表发送到对应的test1的topic下，其余的表发送到默认的canal.mq.topic值
+
+```
+```
+canal 1.1.3版本之后, 支持配置格式：schema.table:pk1^pk2，多个配置之间使用逗号分隔
+
+例子1：test\\.test:pk1^pk2 指定匹配的单表，对应的hash字段为pk1 + pk2
+例子2：.*\\..*:id 正则匹配，指定所有正则匹配的表对应的hash字段为id
+例子3：.*\\..*:$pk$ 正则匹配，指定所有正则匹配的表对应的hash字段为表主键(自动查找)
+例子4: 匹配规则啥都不写，则默认发到0这个partition上
+例子5：.*\\..* ，不指定pk信息的正则匹配，将所有正则匹配的表,对应的hash字段为表名
+按表hash: 一张表的所有数据可以发到同一个分区，不同表之间会做散列 (会有热点表分区过大问题)
+例子6: test\\.test:id,.\\..* , 针对test的表按照id散列,其余的表按照table散列
 ```
 
 ### 启动
@@ -321,4 +353,5 @@ public class CanalClient  implements InitializingBean {
 启动springboot 项目 更改数据库中的数据 如果打印对应日志即为成功 
 
 ![image-20220705152139207](canal.assets/image-20220705152139207-16570057014334.png)
+
 

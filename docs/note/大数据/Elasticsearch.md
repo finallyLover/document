@@ -2,6 +2,10 @@
 
 ## 安装（docker）
 
+### 拉取
+
+### 启动
+
 ## 安装（普通安装）
 
 ### ~~环境准备~~
@@ -65,3 +69,12 @@ https://www.elastic.co/cn/downloads/elasticsearch
 ### 访问
 
 ip地址：端口号
+
+
+##ik中文分词器
+
+### 下载
+`https://github.com/medcl/elasticsearch-analysis-ik/releases`
+
+==备注：根据es版本选择对应的分词器版本==
+![](images/mk-2022-07-20-14-39-54.png)

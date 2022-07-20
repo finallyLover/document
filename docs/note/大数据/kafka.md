@@ -32,12 +32,9 @@ bin/kafka-server-start.sh config/server.properties
 bin/kafka-topics.sh --list --bootstrap-server localhost:9092
 ```
 
-### 错误（err）
 
-#### java.net.UnknownHostException: VM-4-12-centos
-
-解决方案（/house/kafka/kafka_2.12-3.1.0/config/server.properties）
-
-​	将localhost 改为127.0.0.1 则可以解决
-
-![img](kafka.assets/NEKN0$[$I3Q`B]`2SA9ZHR5.png)
+修改配置/config/zookeeper.properties
+```
+listeners=PLAINTEXT://192.168.2.229:9092
+advertised.listeners=PLAINTEXT://192.168.2.229:9092
+```
