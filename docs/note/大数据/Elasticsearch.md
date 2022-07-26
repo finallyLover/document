@@ -2,6 +2,18 @@
 
 ## 安装（docker）
 
+```
+//拉取
+docker pull elasticsearch:7.7.1
+//启动
+docker run --name elasticsearch -p 9200:9200 -p 9300:9300 
+-e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms256m -Xmx512m" 
+-v /mydata/elasticsearch/config/elasticsearch.yml:/config/elasticsearch.yml 
+-v /mydata/elasticsearch/data/:/data 
+-v /mydata/elasticsearch/plugins:/plugins 
+-d elasticsearch:7.7.1
+```
+
 ### 拉取
 
 ### 启动
@@ -76,5 +88,8 @@ ip地址：端口号
 ### 下载
 `https://github.com/medcl/elasticsearch-analysis-ik/releases`
 
+解压后将ik分词器放入 plugins  文件夹中 重启es
+
 ==备注：根据es版本选择对应的分词器版本==
 ![](images/mk-2022-07-20-14-39-54.png)
+ 
