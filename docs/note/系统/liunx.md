@@ -32,9 +32,9 @@
 
 ### 查询文件夹
 
-`find .name "文件名"`
+`find / -name "文件名"`
 
-例如：`find . -name "elasticsearch"`
+例如：`find / -name "elasticsearch"`
 
 
 

@@ -17,3 +17,16 @@ git remote -v
 ```
 
 ![image-20220620134936250](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220620134936250.png)
+
+## git中导出csv日志记录
+
+```sell
+bash 中
+#导入
+git log --date=iso --pretty=format:'"%h","%an","%ad","%s"' >log.csv
+备注： 如果出现乱码设置 如果gbk 不行就utf-8
+ git config --global i18n.commitencoding gbk
+ git config --global i18n.logoutputencoding gbk
+ export LESSCHARSET=gbk
+```
+

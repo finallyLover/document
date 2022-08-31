@@ -2,6 +2,8 @@
 
 ## 安装
 
+官方文档：https://seata.io/zh-cn/docs/user/txgroup/transaction-group.html
+
 ### 新建seata 数据库(执行sql)
 
 ```sql
