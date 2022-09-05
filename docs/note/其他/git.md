@@ -1,5 +1,17 @@
 # Git
 
+
+
+## 安装（git）
+
+```
+#安装
+yum install git
+#查看版本 git --version
+```
+
+
+
 ## git中克隆
 
 ```

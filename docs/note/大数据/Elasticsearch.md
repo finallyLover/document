@@ -6,11 +6,11 @@
 //拉取
 docker pull elasticsearch:7.7.1
 //启动
-docker run --name elasticsearch -p 9200:9200 -p 9300:9300 
--e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms256m -Xmx512m" 
--v /mydata/elasticsearch/config/elasticsearch.yml:/config/elasticsearch.yml 
--v /mydata/elasticsearch/data/:/data 
--v /mydata/elasticsearch/plugins:/plugins 
+docker run --name elasticsearch -p 9200:9200 -p 9300:9300 \
+-e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms256m -Xmx512m" \
+-v /mount/elasticsearch/config/elasticsearch.yml:/config/elasticsearch.yml \
+-v /mount/elasticsearch/data/:/data \
+-v /mount/elasticsearch/plugins:/plugins \
 -d elasticsearch:7.7.1
 ```
 
@@ -92,4 +92,3 @@ ip地址：端口号
 
 ==备注：根据es版本选择对应的分词器版本==
 ![](images/mk-2022-07-20-14-39-54.png)
- 
