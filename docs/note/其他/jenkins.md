@@ -63,6 +63,7 @@ yum install jenkins
 查看文件
 rpm -ql jenkins 找到war进行启动
 启动 指定端口
+nohup java -jar /usr/share/java/jenkins.war --httpPort=10241 >>log 2>&1 &
  java -jar /usr/share/java/jenkins.war --ajp13Port=-1 --httpPort=10240
 ```
 
